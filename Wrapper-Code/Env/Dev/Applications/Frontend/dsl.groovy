@@ -50,7 +50,7 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/Deploy-security-group
                     branches('*/${BRANCH_NAME}')
                 }
             }
-            scriptPath("Env/Dev/Applications/Frontend-API-Infra/Security-Group/Jenkinsfile")
+            scriptPath("Env/Dev/Applications/Frontend/Security-Group/Jenkinsfile")
         }
     }
 }
@@ -77,7 +77,7 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/target-group") {
                     branches('*/${BRANCH_NAME}')
                 }
             }
-            scriptPath("Env/Dev/Applications/Frontend-API-Infra/Target-group/Jenkinsfile")
+            scriptPath("Env/Dev/Applications/Frontend/Target-group/Jenkinsfile")
         }
     }
 }
@@ -104,7 +104,7 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/launch-template") {
                     branches('*/${BRANCH_NAME}')
                 }
             }
-            scriptPath("Env/Dev/Applications/Frontend-API-Infra/Launch-Template/Jenkinsfile")
+            scriptPath("Env/Dev/Applications/Frontend/Launch-Template/Jenkinsfile")
         }
     }
 }
@@ -131,7 +131,7 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/auto-scaling-group") 
                     branches('*/${BRANCH_NAME}')
                 }
             }
-            scriptPath("Env/Dev/Applications/Frontend-API-Infra/autoscaling-group/Jenkinsfile")
+            scriptPath("Env/Dev/Applications/Frontend/autoscaling-group/Jenkinsfile")
         }
     }
 }
@@ -158,7 +158,7 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/auto-scaling-policies
                     branches('*/${BRANCH_NAME}')
                 }
             }
-            scriptPath("Env/Dev/Applications/Frontend-API-Infra/autoscaling-policies/Jenkinsfile")
+            scriptPath("Env/Dev/Applications/Frontend/autoscaling-policies/Jenkinsfile")
         }
     }
 }
@@ -185,7 +185,7 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/listener-rules-ALB") 
                     branches('*/${BRANCH_NAME}')
                 }
             }
-            scriptPath("Env/Dev/Applications/Frontend-API-Infra/Listener-rule/Jenkinsfile")
+            scriptPath("Env/Dev/Applications/Frontend/Listener-rule/Jenkinsfile")
         }
     }
 }
