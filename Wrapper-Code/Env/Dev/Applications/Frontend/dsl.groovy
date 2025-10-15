@@ -22,17 +22,17 @@ folder('terraform/env/dev/applications') {
     description('Application Infra')
 }
 
-folder('terraform/env/dev/applications/frontend-infra') {
-    displayName('Frontend-Infra')
+folder('terraform/env/dev/applications/Frontend') {
+    displayName('Frontend')
     description('Frontend infrastructure resources')
 }
 
 // ===========================================================
-// Pipeline Jobs under Frontend-Infra
+// Pipeline Jobs under Frontend
 // ===========================================================
 
 // ------------------ Security Group ------------------
-pipelineJob("terraform/env/dev/applications/frontend-infra/Deploy-security-group") {
+pipelineJob("terraform/env/dev/applications/Frontend/Deploy-security-group") {
     description("Deploys/Destroys frontend Security Group using Terraform.")
 
     parameters {
@@ -55,11 +55,11 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/Deploy-security-group
     }
 }
 
-println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/Deploy-security-group"
+println "✔︎ Pipeline job created → terraform/env/dev/applications/Frontend/Deploy-security-group"
 
 
 // ------------------ Target Group ------------------
-pipelineJob("terraform/env/dev/applications/frontend-infra/target-group") {
+pipelineJob("terraform/env/dev/applications/Frontend/target-group") {
     description("Deploys/Destroys target-group using Terraform.")
 
     parameters {
@@ -82,11 +82,11 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/target-group") {
     }
 }
 
-println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/target-group"
+println "✔︎ Pipeline job created → terraform/env/dev/applications/Frontend/target-group"
 
 
 // ------------------ Launch Template ------------------
-pipelineJob("terraform/env/dev/applications/frontend-infra/launch-template") {
+pipelineJob("terraform/env/dev/applications/Frontend/launch-template") {
     description("Deploys/Destroys launch-template using Terraform.")
 
     parameters {
@@ -109,11 +109,11 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/launch-template") {
     }
 }
 
-println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/launch-template"
+println "✔︎ Pipeline job created → terraform/env/dev/applications/Frontend/launch-template"
 
 
 // ------------------ Auto Scaling Group ------------------
-pipelineJob("terraform/env/dev/applications/frontend-infra/auto-scaling-group") {
+pipelineJob("terraform/env/dev/applications/Frontend/auto-scaling-group") {
     description("Deploys/Destroys auto-scaling-group using Terraform.")
 
     parameters {
@@ -136,11 +136,11 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/auto-scaling-group") 
     }
 }
 
-println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/auto-scaling-group"
+println "✔︎ Pipeline job created → terraform/env/dev/applications/Frontend/auto-scaling-group"
 
 
 // ------------------ Auto Scaling Policies ------------------
-pipelineJob("terraform/env/dev/applications/frontend-infra/auto-scaling-policies") {
+pipelineJob("terraform/env/dev/applications/Frontend/auto-scaling-policies") {
     description("Deploys/Destroys autoscaling policies using Terraform.")
 
     parameters {
@@ -163,11 +163,11 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/auto-scaling-policies
     }
 }
 
-println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/auto-scaling-policies"
+println "✔︎ Pipeline job created → terraform/env/dev/applications/Frontend/auto-scaling-policies"
 
 
 // ------------------ Listener Rules ------------------
-pipelineJob("terraform/env/dev/applications/frontend-infra/listener-rules-ALB") {
+pipelineJob("terraform/env/dev/applications/Frontend/listener-rules-ALB") {
     description("Deploys/Destroys listener rules using Terraform.")
 
     parameters {
@@ -190,4 +190,4 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/listener-rules-ALB") 
     }
 }
 
-println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/listener-rules-ALB"
+println "✔︎ Pipeline job created → terraform/env/dev/applications/Frontend/listener-rules-ALB"
