@@ -1,3 +1,7 @@
+// ===========================================================
+// Folder Structure for Frontend Infra
+// ===========================================================
+
 folder('terraform') {
     displayName('Terraform')
     description('Contains all Terraform infrastructure deployment jobs')
@@ -23,12 +27,16 @@ folder('terraform/env/dev/applications/frontend-infra') {
     description('Frontend infrastructure resources')
 }
 
+// ===========================================================
+// Pipeline Jobs under Frontend-Infra
+// ===========================================================
 
+// ------------------ Security Group ------------------
 pipelineJob("terraform/env/dev/applications/frontend-infra/Deploy-security-group") {
     description("Deploys/Destroys frontend Security Group using Terraform.")
 
     parameters {
-        stringParam('BRANCH_NAME', 'SCRUM-439-ishaan', 'Git branch to use')
+        stringParam('BRANCH_NAME', 'main', 'Git branch to use')
         choiceParam('ACTION', ['apply', 'destroy'], 'Choose apply to create infra or destroy to remove it.')
     }
 
@@ -37,8 +45,7 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/Deploy-security-group
             scm {
                 git {
                     remote {
-                        url('https://github.com/Snaatak-Apt-Get-Swag/terraform.git')
-                        credentials('git')
+                        url('https://github.com/Devops1qaz/Wrapper-Code.git')
                     }
                     branches('*/${BRANCH_NAME}')
                 }
@@ -51,12 +58,12 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/Deploy-security-group
 println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/Deploy-security-group"
 
 
-
+// ------------------ Target Group ------------------
 pipelineJob("terraform/env/dev/applications/frontend-infra/target-group") {
-    description("Deploys/Destroys  target-group using Terraform.")
+    description("Deploys/Destroys target-group using Terraform.")
 
     parameters {
-        stringParam('BRANCH_NAME', 'SCRUM-441-ishaan', 'Git branch to use')
+        stringParam('BRANCH_NAME', 'main', 'Git branch to use')
         choiceParam('ACTION', ['apply', 'destroy'], 'Choose apply to create infra or destroy to remove it.')
     }
 
@@ -65,8 +72,7 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/target-group") {
             scm {
                 git {
                     remote {
-                        url('https://github.com/Snaatak-Apt-Get-Swag/terraform.git')
-                        credentials('git')
+                        url('https://github.com/Devops1qaz/Wrapper-Code.git')
                     }
                     branches('*/${BRANCH_NAME}')
                 }
@@ -76,14 +82,15 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/target-group") {
     }
 }
 
-println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/Deploy-target-group"
+println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/target-group"
 
 
+// ------------------ Launch Template ------------------
 pipelineJob("terraform/env/dev/applications/frontend-infra/launch-template") {
-    description("Deploys/Destroys  launch-template using Terraform.")
+    description("Deploys/Destroys launch-template using Terraform.")
 
     parameters {
-        stringParam('BRANCH_NAME', 'SCRUM-440-ishaan', 'Git branch to use')
+        stringParam('BRANCH_NAME', 'main', 'Git branch to use')
         choiceParam('ACTION', ['apply', 'destroy'], 'Choose apply to create infra or destroy to remove it.')
     }
 
@@ -92,8 +99,7 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/launch-template") {
             scm {
                 git {
                     remote {
-                        url('https://github.com/Snaatak-Apt-Get-Swag/terraform.git')
-                        credentials('git')
+                        url('https://github.com/Devops1qaz/Wrapper-Code.git')
                     }
                     branches('*/${BRANCH_NAME}')
                 }
@@ -103,13 +109,15 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/launch-template") {
     }
 }
 
-println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/Deploy-launch-template"
+println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/launch-template"
 
+
+// ------------------ Auto Scaling Group ------------------
 pipelineJob("terraform/env/dev/applications/frontend-infra/auto-scaling-group") {
-    description("Deploys/Destroys  auto-scaling-group using Terraform.")
+    description("Deploys/Destroys auto-scaling-group using Terraform.")
 
     parameters {
-        stringParam('BRANCH_NAME', 'SCRUM-442-ishaan', 'Git branch to use')
+        stringParam('BRANCH_NAME', 'main', 'Git branch to use')
         choiceParam('ACTION', ['apply', 'destroy'], 'Choose apply to create infra or destroy to remove it.')
     }
 
@@ -118,8 +126,7 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/auto-scaling-group") 
             scm {
                 git {
                     remote {
-                        url('https://github.com/Snaatak-Apt-Get-Swag/terraform.git')
-                        credentials('git')
+                        url('https://github.com/Devops1qaz/Wrapper-Code.git')
                     }
                     branches('*/${BRANCH_NAME}')
                 }
@@ -129,14 +136,15 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/auto-scaling-group") 
     }
 }
 
-println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/autoscaling-group"
+println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/auto-scaling-group"
 
 
+// ------------------ Auto Scaling Policies ------------------
 pipelineJob("terraform/env/dev/applications/frontend-infra/auto-scaling-policies") {
-    description("Deploys/Destroys  autoscaling policies using Terraform.")
+    description("Deploys/Destroys autoscaling policies using Terraform.")
 
     parameters {
-        stringParam('BRANCH_NAME', 'SCRUM-443-ishaan', 'Git branch to use')
+        stringParam('BRANCH_NAME', 'main', 'Git branch to use')
         choiceParam('ACTION', ['apply', 'destroy'], 'Choose apply to create infra or destroy to remove it.')
     }
 
@@ -145,8 +153,7 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/auto-scaling-policies
             scm {
                 git {
                     remote {
-                        url('https://github.com/Snaatak-Apt-Get-Swag/terraform.git')
-                        credentials('git')
+                        url('https://github.com/Devops1qaz/Wrapper-Code.git')
                     }
                     branches('*/${BRANCH_NAME}')
                 }
@@ -156,13 +163,15 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/auto-scaling-policies
     }
 }
 
-println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/autoscaling-policies"
+println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/auto-scaling-policies"
 
+
+// ------------------ Listener Rules ------------------
 pipelineJob("terraform/env/dev/applications/frontend-infra/listener-rules-ALB") {
-    description("Deploys/Destroys  autoscaling policies using Terraform.")
+    description("Deploys/Destroys listener rules using Terraform.")
 
     parameters {
-        stringParam('BRANCH_NAME', 'SCRUM-444-ishaan', 'Git branch to use')
+        stringParam('BRANCH_NAME', 'main', 'Git branch to use')
         choiceParam('ACTION', ['apply', 'destroy'], 'Choose apply to create infra or destroy to remove it.')
     }
 
@@ -171,8 +180,7 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/listener-rules-ALB") 
             scm {
                 git {
                     remote {
-                        url('https://github.com/Snaatak-Apt-Get-Swag/terraform.git')
-                        credentials('git')
+                        url('https://github.com/Devops1qaz/Wrapper-Code.git')
                     }
                     branches('*/${BRANCH_NAME}')
                 }
@@ -182,4 +190,4 @@ pipelineJob("terraform/env/dev/applications/frontend-infra/listener-rules-ALB") 
     }
 }
 
-println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/Listener-Rules"
+println "✔︎ Pipeline job created → terraform/env/dev/applications/frontend-infra/listener-rules-ALB"
