@@ -20,13 +20,13 @@ folder('terraform/env/dev/applications') {
     description('Application-Infra')
 }
 
-folder('terraform/env/dev/applications/Attendance-Infra') {
-    displayName('Attendance-Infra')
+folder('terraform/env/dev/applications/Attendance') {
+    displayName('Attendance')
     description('Attendance infrastructure resources')
 }
 
 // ------------------ Security Group ------------------
-pipelineJob("terraform/env/dev/applications/Attendance-Infra/security-group") {
+pipelineJob("terraform/env/dev/applications/Attendance/security-group") {
     description("Deploys/Destroys Security Group for Attendance Infra using Terraform.")
 
     parameters {
@@ -50,11 +50,11 @@ pipelineJob("terraform/env/dev/applications/Attendance-Infra/security-group") {
     }
 }
 
-println "✅ Pipeline job created → terraform/env/dev/applications/Attendance-Infra/security-group"
+println "✅ Pipeline job created → terraform/env/dev/applications/Attendance/security-group"
 
 
 // ------------------ Target Group ------------------
-pipelineJob("terraform/env/dev/applications/Attendance-Infra/target-group") {
+pipelineJob("terraform/env/dev/applications/Attendance/target-group") {
     description("Deploys/Destroys Target Group for Attendance Infra using Terraform.")
 
     parameters {
@@ -78,11 +78,11 @@ pipelineJob("terraform/env/dev/applications/Attendance-Infra/target-group") {
     }
 }
 
-println "✅ Pipeline job created → terraform/env/dev/applications/Attendance-Infra/target-group"
+println "✅ Pipeline job created → terraform/env/dev/applications/Attendance/target-group"
 
 
 // ------------------ Launch Template ------------------
-pipelineJob("terraform/env/dev/applications/Attendance-Infra/launch-template") {
+pipelineJob("terraform/env/dev/applications/Attendance/launch-template") {
     description("Deploys/Destroys Launch Template for Attendance Infra using Terraform.")
 
     parameters {
@@ -106,11 +106,11 @@ pipelineJob("terraform/env/dev/applications/Attendance-Infra/launch-template") {
     }
 }
 
-println "✅ Pipeline job created → terraform/env/dev/applications/Attendance-Infra/launch-template"
+println "✅ Pipeline job created → terraform/env/dev/applications/Attendance/launch-template"
 
 
 // ------------------ Auto Scaling Group ------------------
-pipelineJob("terraform/env/dev/applications/Attendance-Infra/auto-scaling-group") {
+pipelineJob("terraform/env/dev/applications/Attendance/auto-scaling-group") {
     description("Deploys/Destroys Auto Scaling Group for Attendance Infra using Terraform.")
 
     parameters {
@@ -134,11 +134,11 @@ pipelineJob("terraform/env/dev/applications/Attendance-Infra/auto-scaling-group"
     }
 }
 
-println "✅ Pipeline job created → terraform/env/dev/applications/Attendance-Infra/auto-scaling-group"
+println "✅ Pipeline job created → terraform/env/dev/applications/Attendance/auto-scaling-group"
 
 
 // ------------------ Auto Scaling Policies ------------------
-pipelineJob("terraform/env/dev/applications/Attendance-Infra/auto-scaling-policies") {
+pipelineJob("terraform/env/dev/applications/Attendance/auto-scaling-policies") {
     description("Deploys/Destroys Auto Scaling Policies for Attendance Infra using Terraform.")
 
     parameters {
@@ -162,11 +162,11 @@ pipelineJob("terraform/env/dev/applications/Attendance-Infra/auto-scaling-polici
     }
 }
 
-println "✅ Pipeline job created → terraform/env/dev/applications/Attendance-Infra/auto-scaling-policies"
+println "✅ Pipeline job created → terraform/env/dev/applications/Attendance/auto-scaling-policies"
 
 
 // ------------------ Listener Rules ------------------
-pipelineJob("terraform/env/dev/applications/Attendance-Infra/listener-rules-ALB") {
+pipelineJob("terraform/env/dev/applications/Attendance/listener-rules-ALB") {
     description("Deploys/Destroys ALB Listener Rules for Attendance Infra using Terraform.")
 
     parameters {
@@ -190,5 +190,5 @@ pipelineJob("terraform/env/dev/applications/Attendance-Infra/listener-rules-ALB"
     }
 }
 
-println "✅ Pipeline job created → terraform/env/dev/applications/Attendance-Infra/listener-rules-ALB"
+println "✅ Pipeline job created → terraform/env/dev/applications/Attendance/listener-rules-ALB"
 
