@@ -1,3 +1,5 @@
+
+
 folder('terraform') {
     displayName('Terraform')
     description('Contains all Terraform infrastructure deployment jobs')
@@ -18,16 +20,20 @@ folder('terraform/env/dev/applications') {
     description('Application Infra')
 }
 
-folder('terraform/env/dev/applications/employee-infra') {
-    displayName('Employee-Infra')
+folder('terraform/env/dev/applications/employee') {
+    displayName('employee')
     description('Employee application infrastructure resources')
 }
 
-pipelineJob("terraform/env/dev/applications/employee-infra/Wrapper-Code") {
+// ===========================================================
+// Pipeline Job for Employee Application
+// ===========================================================
+
+pipelineJob("terraform/env/dev/applications/employee/Wrapper-Code") {
     description("Deploys/Destroys Employee application using Wrapper-Code.")
 
     parameters {
-        stringParam('BRANCH_NAME', 'SCRUM-577-Sneha-Joshi', 'Git branch to use')
+        stringParam('BRANCH_NAME', 'main', 'Git branch to use')
         choiceParam('ACTION', ['apply', 'destroy'], 'Choose apply to create infra or destroy to remove it.')
     }
 
@@ -36,8 +42,7 @@ pipelineJob("terraform/env/dev/applications/employee-infra/Wrapper-Code") {
             scm {
                 git {
                     remote {
-                        url('https://github.com/Snaatak-Cloudops-Crew/IAC-Terraform-repo.git')
-                        credentials('github-token')
+                        url('https://github.com/Devops1qaz/Wrapper-Code.git')
                     }
                     branches('*/${BRANCH_NAME}')
                 }
@@ -47,4 +52,4 @@ pipelineJob("terraform/env/dev/applications/employee-infra/Wrapper-Code") {
     }
 }
 
-println "✔︎ Pipeline job created → terraform/env/dev/applications/employee-infra"
+println "✔︎ Pipeline job created → terraform/env/dev/applications/employee"
