@@ -1,3 +1,5 @@
+
+
 folder('terraform') {
     displayName('Terraform')
     description('Contains all Terraform infrastructure deployment jobs')
@@ -23,48 +25,9 @@ folder('terraform/env/dev/applications/Attendance-Infra') {
     description('Attendance infrastructure resources')
 }
 
-
-pipelineJob("terraform/env/dev/applications/Attendance-Infra/Wrapper-Code") {
-    description("Deploys/Destroys frontend using Wrapper-Code.")
-
-    parameters {
-        stringParam('BRANCH_NAME', 'main', 'Git branch to use')
-        choiceParam('ACTION', ['apply', 'destroy'], 'Choose apply to create infra or destroy to remove it.')
-    }
-
-    definition {
-        cpsScm {
-            scm {
-                git {
-                    remote {
-                        url('folder('terraform') {
-    displayName('Terraform')
-    description('Contains all Terraform infrastructure deployment jobs')
-}
-
-folder('terraform/env') {
-    displayName('Env')
-    description('Environment specific deployments')
-}
-
-folder('terraform/env/dev') {
-    displayName('Dev')
-    description('Development environment deployments')
-}
-
-folder('terraform/env/dev/applications') {
-    displayName('Applications')
-    description('Application Infra')
-}
-
-folder('terraform/env/dev/applications/notification-infra') {
-    displayName('notification-Infra')
-    description('notification infrastructure resources')
-}
-
-
-pipelineJob("terraform/env/dev/applications/notification-infra/Deploy-security-group") {
-    description("Deploys/Destroys notification Security Group using Terraform.")
+// ------------------ Security Group ------------------
+pipelineJob("terraform/env/dev/applications/Attendance-Infra/security-group") {
+    description("Deploys/Destroys Security Group for Attendance Infra using Terraform.")
 
     parameters {
         stringParam('BRANCH_NAME', 'main', 'Git branch to use')
@@ -77,22 +40,22 @@ pipelineJob("terraform/env/dev/applications/notification-infra/Deploy-security-g
                 git {
                     remote {
                         url('https://github.com/Devops1qaz/Wrapper-Code.git')
-                        credentials('git')
+                        
                     }
-                    branches('*/${BRANCH_NAME}')
+                    branches("*/${BRANCH_NAME}")
                 }
             }
-            scriptPath("Env/Dev/Applications/Notification-API-Infra/Security-Group/Jenkinsfile")
+            scriptPath("Env/Dev/Applications/Attendance/Security-Group/Jenkinsfile")
         }
     }
 }
 
-println " Pipeline job created → terraform/env/dev/applications/notification-infra/Deploy-security-group"
+println "✅ Pipeline job created → terraform/env/dev/applications/Attendance-Infra/security-group"
 
 
-
-pipelineJob("terraform/env/dev/applications/notification-infra/target-group") {
-    description("Deploys/Destroys  target-group using Terraform.")
+// ------------------ Target Group ------------------
+pipelineJob("terraform/env/dev/applications/Attendance-Infra/target-group") {
+    description("Deploys/Destroys Target Group for Attendance Infra using Terraform.")
 
     parameters {
         stringParam('BRANCH_NAME', 'main', 'Git branch to use')
@@ -105,21 +68,22 @@ pipelineJob("terraform/env/dev/applications/notification-infra/target-group") {
                 git {
                     remote {
                         url('https://github.com/Devops1qaz/Wrapper-Code.git')
-                        credentials('git')
+                        
                     }
-                    branches('*/${BRANCH_NAME}')
+                    branches("*/${BRANCH_NAME}")
                 }
             }
-            scriptPath("Env/Dev / Notification-API-Infra/Target-Group/Jenkinsfile")
+            scriptPath("Env/Dev/Applications/Attendance/Target-Group/Jenkinsfile")
         }
     }
 }
 
-println " Pipeline job created → terraform/env/dev/applications/notification-infra/Deploy-target-group"
+println "✅ Pipeline job created → terraform/env/dev/applications/Attendance-Infra/target-group"
 
 
-pipelineJob("terraform/env/dev/applications/notification-infra/launch-template") {
-    description("Deploys/Destroys  launch-template using Terraform.")
+// ------------------ Launch Template ------------------
+pipelineJob("terraform/env/dev/applications/Attendance-Infra/launch-template") {
+    description("Deploys/Destroys Launch Template for Attendance Infra using Terraform.")
 
     parameters {
         stringParam('BRANCH_NAME', 'main', 'Git branch to use')
@@ -132,43 +96,22 @@ pipelineJob("terraform/env/dev/applications/notification-infra/launch-template")
                 git {
                     remote {
                         url('https://github.com/Devops1qaz/Wrapper-Code.git')
-                        credentials('git')
+                        
                     }
-                    branches('*/${BRANCH_NAME}')
+                    branches("*/${BRANCH_NAME}")
                 }
             }
-            scriptPath("Env/Dev/Application/Notification-Worker/Launch-Template/Jenkinsfile")
+            scriptPath("Env/Dev/Applications/Attendance/Launch-Template/Jenkinsfile")
         }
     }
 }
 
-println " Pipeline job created → terraform/env/dev/applications/notification-infra/Deploy-launch-template"
-
-pipelineJob("terraform/env/dev/applications/notification-infra/auto-scaling-group") {
-    description("Deploys/Destroys  auto-scaling-group using Terraform.")
-    description("Deploys/Destroys Auto Scaling Group for Notification Worker Infra using Terraform.")
-
-parameters {
-stringParam('BRANCH_NAME', 'main', 'Git branch to use')
-@@ -121,65 +14,14 @@ pipelineJob("terraform/env/dev/applications/notification-infra/auto-scaling-grou
-url('https://github.com/Devops1qaz/Wrapper-Code.git')
-credentials('git')
-}
-                    // Correctly expands the parameter at runtime
-branches('*/${BRANCH_NAME}')
-}
-}
-            // ✅ Correct Jenkinsfile path for your pipeline
-scriptPath("Env/Dev/Application/Notification-Worker-Infra/Auto-Scaling-Group/Jenkinsfile")
-}
-}
-}
-
-println " Pipeline job created → terraform/env/dev/applications/notification-infra/autoscaling-group"
+println "✅ Pipeline job created → terraform/env/dev/applications/Attendance-Infra/launch-template"
 
 
-pipelineJob("terraform/env/dev/applications/notification-infra/auto-scaling-policies") {
-    description("Deploys/Destroys  autoscaling policies using Terraform.")
+// ------------------ Auto Scaling Group ------------------
+pipelineJob("terraform/env/dev/applications/Attendance-Infra/auto-scaling-group") {
+    description("Deploys/Destroys Auto Scaling Group for Attendance Infra using Terraform.")
 
     parameters {
         stringParam('BRANCH_NAME', 'main', 'Git branch to use')
@@ -181,20 +124,22 @@ pipelineJob("terraform/env/dev/applications/notification-infra/auto-scaling-poli
                 git {
                     remote {
                         url('https://github.com/Devops1qaz/Wrapper-Code.git')
-                        credentials('git')
+                        
                     }
-                    branches('*/${BRANCH_NAME}')
+                    branches("*/${BRANCH_NAME}")
                 }
             }
-            scriptPath("Env/Dev/Terraform/Notification-Worker/Auto-Scaling-Policies/Jenkinsfile")
+            scriptPath("Env/Dev/Applications/Attendance/Auto-Scaling-Group/Jenkinsfile")
         }
     }
 }
 
-println " Pipeline job created → terraform/env/dev/applications/notification-infra/autoscaling-policies"
+println "✅ Pipeline job created → terraform/env/dev/applications/Attendance-Infra/auto-scaling-group"
 
-pipelineJob("terraform/env/dev/applications/notification-infra/listener-rules-ALB") {
-    description("Deploys/Destroys  autoscaling policies using Terraform.")
+
+// ------------------ Auto Scaling Policies ------------------
+pipelineJob("terraform/env/dev/applications/Attendance-Infra/auto-scaling-policies") {
+    description("Deploys/Destroys Auto Scaling Policies for Attendance Infra using Terraform.")
 
     parameters {
         stringParam('BRANCH_NAME', 'main', 'Git branch to use')
@@ -207,26 +152,43 @@ pipelineJob("terraform/env/dev/applications/notification-infra/listener-rules-AL
                 git {
                     remote {
                         url('https://github.com/Devops1qaz/Wrapper-Code.git')
-                        credentials('git')
+                        
                     }
-                    branches('*/${BRANCH_NAME}')
+                    branches("*/${BRANCH_NAME}")
                 }
             }
-            scriptPath("Env/Dev/Applications/notification-API-Infra/Listener-rule/Jenkinsfile")
+            scriptPath("Env/Dev/Applications/Attendance/Auto-Scaling-Policies/Jenkinsfile")
         }
     }
 }
 
-println " Pipeline job created → terraform/env/dev/applications/notification-infra/Listener-Rules"
-println "✅ Pipeline job created → terraform/env/dev/applications/notification-infra/auto-scaling-group"')
-                        credentials('git')
+println "✅ Pipeline job created → terraform/env/dev/applications/Attendance-Infra/auto-scaling-policies"
+
+
+// ------------------ Listener Rules ------------------
+pipelineJob("terraform/env/dev/applications/Attendance-Infra/listener-rules-ALB") {
+    description("Deploys/Destroys ALB Listener Rules for Attendance Infra using Terraform.")
+
+    parameters {
+        stringParam('BRANCH_NAME', 'main', 'Git branch to use')
+        choiceParam('ACTION', ['apply', 'destroy'], 'Choose apply to create infra or destroy to remove it.')
+    }
+
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url('https://github.com/Devops1qaz/Wrapper-Code.git')
+                        
                     }
-                    branches('*/${BRANCH_NAME}')
+                    branches("*/${BRANCH_NAME}")
                 }
             }
-            scriptPath("Wrappercode/Env/Dev/Applications/Attendance-App/Jenkinsfile")
+            scriptPath("Env/Dev/Applications/Attendance/Listener-Rules/Jenkinsfile")
         }
     }
 }
 
-println "Pipeline job created → terraform/env/dev/applications/Attendance-Infra"
+println "✅ Pipeline job created → terraform/env/dev/applications/Attendance-Infra/listener-rules-ALB"
+
